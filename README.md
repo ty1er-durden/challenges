@@ -9,7 +9,7 @@ Once an official solution is available it will be placed in the ```solutions``` 
 
 ### Join GitHub
 
-If you do not already have an account, you will need to [Join GitHub](https://github.com/join) in order to upload your own solutions.  An administrator of the [challenges](https://github.com/ty1er-durden/challenges/) repository can invite you to collaborate once you have an account. by following the instructions in [Inviting collaborators to a personal repository](https://help.github.com/en/articles/inviting-collaborators-to-a-personal-repository).
+If you do not already have an account, you will need to [Join GitHub](https://github.com/join) in order to upload your own solutions.  An administrator of the [challenges](https://github.com/ty1er-durden/challenges/) repository can invite you to collaborate once you have an account by following the instructions in [Inviting collaborators to a personal repository](https://help.github.com/en/articles/inviting-collaborators-to-a-personal-repository).
 
 Navigate to the [challenge repository invitations](https://github.com/ty1er-durden/challenges/invitations) to accept the invitation.
 
