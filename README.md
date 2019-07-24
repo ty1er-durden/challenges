@@ -15,4 +15,4 @@ Navigate to the [challenge repository invitations](https://github.com/ty1er-durd
 
 ### Upload Solutions
 
-You should upload your solutions to the ```challenge<n>/solutions``` (where _<n> is the challenge number).  **TAKE CARE NOT TO OVERWRITE THE WORK OF OTHERS - WE WOULD SUGGEST USING YOUR GITHUB USERNAME IN THE FILE NAME!**
+You should upload your solutions to the ```challenge<n>/solutions```.  **TAKE CARE NOT TO OVERWRITE THE WORK OF OTHERS - WE WOULD SUGGEST USING YOUR GITHUB USERNAME IN THE FILE NAME!**
