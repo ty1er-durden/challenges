@@ -38,7 +38,7 @@ def get_questions(n):
     """Gets n questions from the Open Trivia Database API"""
     try:
         response = requests.get(f"https://opentdb.com/api.php?amount={n}")
-        # JSON RESPONSE SHOULD LOOK SOMEETHING LIKE THIS:
+        # JSON RESPONSE SHOULD LOOK SOMETHING LIKE THIS:
         # {
         #     "response_code": 0,
         #     "results": [
