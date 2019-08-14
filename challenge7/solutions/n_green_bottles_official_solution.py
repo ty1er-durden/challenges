@@ -57,7 +57,7 @@ def number_to_text(n):
         20: "twenty",
     }
     if n < 0:
-        return "An unnatural number of"
+        return "An unnatural number of "
     if n <= 20:
         return NUMBERS_TO_TEXT[n]
     if n > 20:
@@ -91,7 +91,7 @@ def generate_lyrics(bottle_count=10, colour="green"):
 
 print(
     generate_lyrics(
-        int(input("How many bottles? ")), input(f"And what colour are they? ")
+        int(input("How many bottles? ")), input("And what colour are they? ")
     ),
     end="",
 )
