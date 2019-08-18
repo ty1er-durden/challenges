@@ -119,9 +119,12 @@ def get_insult():
     )
 
 
+name = input("Hi, what's your name? ").title()
+n = int(input(f"How many questions would you like to answer, {name}? "))
+
 # Get the questions from the API and immediatley quit if none are available
 try:
-    questions = get_questions(3)
+    questions = get_questions(n)
     questions = questions["results"]
 except Exception as e:
     print(f"Fatal Error - failed to load questions: {e}")
@@ -142,7 +145,8 @@ for question in questions:
 score_percentage = correct_answers / len(questions) * 100
 
 if score_percentage >= 75:
-    print(f"\nWell done! You scored {score_percentage:.0f}%.\n")
+    print(f"\nWell done {name}! You scored {score_percentage:.0f}%.\n")
 else:
     insult = get_insult()
-    print(f"\n{insult}. You scored {score_percentage:.0f}%.\n")
+    insult = insult[0].lower() + insult[1:]
+    print(f"\n{name}, {insult}. You scored {score_percentage:.0f}%.\n")
