@@ -1,0 +1,109 @@
+
+"""
+Create a quiz game that generates random questions
+and scores the user at the end.
+The program should:
+    (1) Greet the user, asks their name and store it
+    (2) Ask the user how many questions they want and store
+        it
+    (3) Use the API at https://opentdb.com/api_config.php
+        to generate a quiz of up to 10 questions (asks the
+        user how many they want)
+    (4) Create a menu system for the user to answer the
+        questions
+    (5) If the user scores less than 75%, insult them using:
+        https://insult.mattbas.org/api/insult
+The program has been partially written for you.  Complete it!
+HINTS
+    - Create a new virtual environment and install the
+      requests library
+    - Experiment with the structured data returned by
+      the get_questions() function in the Python interpreter
+      to work out how to extract the data you want
+    - Build out the get_answer function
+    - Use similar code to that provided in the get_questions
+      function to query the Insult API for a random insult
+    - Write the main program and utilise the functions to
+      complete the task
+"""
+
+
+import json
+import requests
+import random
+import win32com.client
+
+speaker = win32com.client.Dispatch("SAPI.SpVoice")
+
+
+def get_questions(qlist,alist):
+    """Prints the questions and answers on the screen"""
+    """Renders the question and possible answers, then takes the user's answer and returs True if it is correct or False if it is not"""
+
+    global loc, bad_answers
+    print (qlist)
+    for a in enumerate (alist):
+        print (a)
+
+    bad_answers=0
+
+    try:
+        solution=int(input('Type in the number next to the correct option:'))
+
+        if solution == loc:
+            speaker.Speak('Well done, buddy!')
+            print ('Well done, buddy!')
+
+        else:
+            print('The solution is number ', loc)
+            bad_answers+=1
+        return bad_answers
+    except:
+        print ('You typed in a non-sensical character.')
+
+def get_insult(name):
+    """Gets an insult from Matt Bas's Insult API"""
+    result = bad_answers / number_of_questions
+    if result < 0.76:
+        print ('*'*80)
+        print ('Good answers:', bad_answers)
+        print('Number of questions:', number_of_questions)
+        print ('Your result is pathetic')
+        print('The result is', result)
+        response2 = requests.get(f"https://insult.mattbas.org/api/insult.json?template=are+as+%3Cadjective%3E+as+%3Carticle+target%3Dadj1%3E+%3Cadjective+min%3D1+max%3D3+id%3Dadj1%3E+%3Camount%3E+of+%3Cadjective+min%3D1+max%3D3%3E+%3Canimal%3E+%3Canimal_part%3E%0D%0A&who=You&plural=on")
+        insult = json.loads(response2.content)
+        insult_reply = insult['insult']
+        speaker.Speak(name)
+        speaker.Speak (insult_reply)
+        return insult_reply
+
+    else:
+        print('Good job, man!')
+        speaker.Speak('Good job, man!')
+
+
+
+name=input('What is you name, bud:')
+number_of_questions = int(input('How many questions would you like to have? It must be under 10: '))
+
+"""Gets  questions from the Open Trivia Database API"""
+try:
+    response = requests.get(f"https://opentdb.com/api.php?amount={number_of_questions}")
+    reply=json.loads(response.content)
+except Exception as e:
+    print(f"Fatal Error - Failed to load questions: {e}")
+    exit()
+
+alist=[]
+questions=[]
+
+for item in reply['results']:
+    qlist = item['question']
+    alist = item['incorrect_answers']
+    correct_answer = item['correct_answer']
+    questions.append(qlist)
+    loc = random.randint(0, 3)
+    alist.insert(loc, correct_answer)
+    get_questions(qlist,alist)
+
+get_insult(name)
